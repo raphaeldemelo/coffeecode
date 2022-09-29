@@ -46,13 +46,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'center'
-
     },
     observation: {
         fontWeight: 'bold',
         paddingEnd: 14,
         paddingTop: 14,
-        paddingLeft: 50,
+        paddingLeft: 55,
         paddingRight: 14,
     },
     total: {

@@ -57,14 +57,15 @@ const styles = StyleSheet.create({
         borderColor: '#dfdfdf',
         borderRadius: 10,
         marginBottom: 14,
-        padding: 8,
+        padding: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginLeft: 10,
     },
     titulo: {
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 16,
     },
     imagem: {
         width: 100,

@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Splash from '../pages/Splash';
 import Home from '../pages/Home';
 import Carrinho from '../pages/Carrinho';
 
@@ -9,10 +10,18 @@ export default function Routes() {
 
         <Stack.Navigator>
             <Stack.Screen
+                name='Splash'
+                component={Splash}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
                 name='Home'
                 component={Home}
                 options={{
-                    headerShown: false
+                    headerShown: false,
+                    gestureEnabled: false
                 }}
             />
             <Stack.Screen

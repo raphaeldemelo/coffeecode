@@ -1,11 +1,12 @@
-import React, { useState, useContext } from 'react';
-import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import React, { useState, useContext, useEffect } from 'react';
+import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, FlatList, BackHandler } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import Produto from '../../components/Produto';
 import { useNavigation } from '@react-navigation/native';
 import { CarrinhoContext } from '../../contexts/CarrinhoContext';
 
 export default function Home() {
+
     const { carrinho, addItemCarrinho } = useContext(CarrinhoContext);
     const navigation = useNavigation();
     const [produtos, setProdutos] = useState([
@@ -38,6 +39,8 @@ export default function Home() {
     function handleAdionarCarrinho(item) {
         addItemCarrinho(item)
     }
+
+
 
     return (
         <SafeAreaView style={styles.container}>
