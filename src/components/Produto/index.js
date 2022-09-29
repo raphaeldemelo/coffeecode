@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     botaoAdicionar: {
         backgroundColor: "#25544B",
         borderRadius: 10,
-        width: 30,
-        height: 30,
+        width: 35,
+        height: 35,
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: 10,
