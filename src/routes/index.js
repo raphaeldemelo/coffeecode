@@ -19,7 +19,7 @@ export default function Routes() {
                 name='Carrinho'
                 component={Carrinho}
                 options={{
-                    headerTitle: 'Meu Carrinho'
+                    headerShown: false,
                 }}
             />
         </Stack.Navigator>

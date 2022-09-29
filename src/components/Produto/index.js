@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 
-export default function Produto({ data }) {
+export default function Produto({ data, addItemCarrinho }) {
     return (
         <View style={styles.container}>
 
@@ -15,7 +15,7 @@ export default function Produto({ data }) {
                     </View>
                     <View style={styles.contentPreco}>
                         <Text style={styles.precoProduto}>R$ {data.preco.toFixed(2)}</Text>
-                        <TouchableOpacity style={styles.botaoAdicionar}>
+                        <TouchableOpacity style={styles.botaoAdicionar} onPress={addItemCarrinho}>
                             <Text style={styles.botaoTexto}>+</Text>
                         </TouchableOpacity>
                     </View>

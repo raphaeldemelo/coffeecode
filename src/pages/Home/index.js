@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Text, View, SafeAreaView, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 import Produto from '../../components/Produto';
+import { useNavigation } from '@react-navigation/native';
+import { CarrinhoContext } from '../../contexts/CarrinhoContext';
 
 export default function Home() {
-
+    const { carrinho, addItemCarrinho } = useContext(CarrinhoContext);
     const navigation = useNavigation();
     const [produtos, setProdutos] = useState([
         {
@@ -32,8 +33,11 @@ export default function Home() {
             'foto': (require('../../assets/cafecomleite.png')),
             'preco': 11.99
         },
-
     ]);
+
+    function handleAdionarCarrinho(item) {
+        addItemCarrinho(item)
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -41,22 +45,25 @@ export default function Home() {
 
                 <Text style={styles.titulo}>Faça seu pedido</Text>
                 <TouchableOpacity style={styles.botaoCarrinho} onPress={() => navigation.navigate('Carrinho')}>
-                    <View style={styles.bolha}>
-                        <Text style={styles.bolhaTexto}>1</Text>
-                    </View>
+                    {carrinho?.length >= 1 && (
+                        <View style={styles.bolha}>
+                            <Text style={styles.bolhaTexto}>
+                                {carrinho?.length}
+                            </Text>
+                        </View>
+                    )}
+
                     <Feather name='shopping-cart' size={30} color='#000' />
                 </TouchableOpacity>
             </View>
             <FlatList
-                style={styles.lista}
                 data={produtos}
                 keyExtractor={(item) => String(item.id)}
-                renderItem={({ item }) => <Produto data={item} />}
+                renderItem={({ item }) => <Produto data={item} addItemCarrinho={() => handleAdionarCarrinho(item)} />}
             />
         </SafeAreaView>
     );
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -88,7 +95,6 @@ const styles = StyleSheet.create({
         bottom: -2,
         left: -4
     },
-
     bolhaTexto: {
         fontSize: 12,
         color: '#fff',
