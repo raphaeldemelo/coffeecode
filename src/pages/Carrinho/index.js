@@ -28,6 +28,7 @@ export default function Cart() {
                         <LottieView
                             source={require('../../assets/lupa.json')}
                             autoPlay
+                            loop={true}
                             speed={0.5}
                         />
                         <Text style={styles.observationTexto}>Parece que ainda não fez nenhum pedido</Text>
@@ -46,7 +47,7 @@ export default function Cart() {
             //ListFooterComponent={() => <Text style={styles.total}>Total R$ {total}</Text>}
             />
             < View style={styles.footer} >
-                <Text style={styles.footerTexto}>Total de R$ {total}</Text>
+                <Text style={styles.footerTexto}>Total de R$ {total.toString().replace(".", ",")}</Text>
             </View >
         </SafeAreaView >
     )
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     },
     titulo: {
         fontWeight: 'bold',
-        fontSize: 25,
+        fontSize: 24,
         flex: 1,
         alignItems: 'center',
         marginLeft: -150,

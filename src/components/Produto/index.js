@@ -14,7 +14,7 @@ export default function Produto({ data, addItemCarrinho }) {
                         <Text style={styles.nomeProduto}>{data.nome}</Text>
                     </View>
                     <View style={styles.contentPreco}>
-                        <Text style={styles.precoProduto}>R$ {data.preco.toFixed(2)}</Text>
+                        <Text style={styles.precoProduto}>R$ {data.preco.toFixed(2).toString().replace(".", ",")}</Text>
                         <TouchableOpacity style={styles.botaoAdicionar} onPress={addItemCarrinho}>
                             <Text style={styles.botaoTexto}>+</Text>
                         </TouchableOpacity>

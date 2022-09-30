@@ -32,7 +32,7 @@ export default function CardItem({ data, addAmount, removeAmount }) {
             <View style={styles.content}>
                 <View>
                     <Text style={styles.titulo}>{data.nome}</Text>
-                    <Text style={styles.preco}>R$ {data.preco.toFixed(2)}</Text>
+                    <Text style={styles.preco}>R$ {data.preco.toFixed(2).toString().replace(".", ",")}</Text>
                 </View>
 
                 <View style={styles.amountContainer}>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginStart: 10,
         marginEnd: 10,
-        marginTop: 14,
+        margin: 14,
 
     },
     titulo: {
