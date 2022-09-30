@@ -1,9 +1,10 @@
 import { useContext } from 'react';
-import { View, StyleSheet, FlatList, Text, SafeAreaView } from 'react-native';
+import { View, StyleSheet, FlatList, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import { CarrinhoContext } from '../../contexts/CarrinhoContext';
 import CardItem from '../../components/CardItem'
 import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native';
+import LottieView from 'lottie-react-native';
 
 export default function Cart() {
 
@@ -20,7 +21,21 @@ export default function Cart() {
                 data={carrinho}
                 showsVerticalScrollIndicator={false}
                 keyExtractor={(item) => String(item.id)}
-                ListEmptyComponent={() => <Text style={styles.observation}>{`Nenhum item no carrinho até o momento :(`}</Text>}
+                style={styles.lista}
+                //ListEmptyComponent={() => <Text style={styles.observation}>{`Nenhum item no carrinho até o momento :(`}</Text>}
+                ListEmptyComponent={() =>
+                    <View style={styles.observation}>
+                        <LottieView
+                            source={require('../../assets/lupa.json')}
+                            autoPlay
+                            speed={0.5}
+                        />
+                        <Text style={styles.observationTexto}>Parece que ainda não fez nenhum pedido</Text>
+                        <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Home')}>
+                            <Text style={styles.botaoTexto}>Voltar para Home</Text>
+                        </TouchableOpacity>
+                    </View>
+                }
                 renderItem={({ item }) => (
                     <CardItem
                         data={item}
@@ -28,9 +43,12 @@ export default function Cart() {
                         removeAmount={() => removeItemCart(item)}
                     />
                 )}
-                ListFooterComponent={() => <Text style={styles.total}>Total R$ {total}</Text>}
+            //ListFooterComponent={() => <Text style={styles.total}>Total R$ {total}</Text>}
             />
-        </SafeAreaView>
+            < View style={styles.footer} >
+                <Text style={styles.footerTexto}>Total de R$ {total}</Text>
+            </View >
+        </SafeAreaView >
     )
 }
 
@@ -38,21 +56,24 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fafafa",
-        paddingEnd: 14,
-        paddingTop: 14,
+        width: "100%",
     },
     header: {
         padding: 8,
         alignItems: 'center',
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderBottomWidth: 1,
+        borderColor: '#DDD',
+
     },
     observation: {
         fontWeight: 'bold',
-        paddingEnd: 14,
         paddingTop: 14,
-        paddingLeft: 55,
-        paddingRight: 14,
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        height: 500,
     },
     total: {
         fontWeight: 'bold',
@@ -67,7 +88,42 @@ const styles = StyleSheet.create({
         fontSize: 25,
         flex: 1,
         alignItems: 'center',
-        marginLeft: -130,
+        marginLeft: -150,
+    },
 
-    }
+    footer: {
+        backgroundColor: "#fafafa",
+        width: '100%',
+        justifyContent: 'center',
+        paddingLeft: 14,
+        height: 50,
+        borderTopWidth: 1,
+        borderColor: '#ddd'
+    },
+
+    footerTexto: {
+        fontWeight: 'bold',
+        fontSize: 18,
+    },
+
+    observationTexto: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 20,
+    },
+
+    botao: {
+        backgroundColor: "#25544B",
+        borderRadius: 10,
+        padding: 10,
+        width: '80%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    botaoTexto: {
+        fontSize: 16,
+        color: '#FFF',
+        fontWeight: 'bold',
+    },
 })

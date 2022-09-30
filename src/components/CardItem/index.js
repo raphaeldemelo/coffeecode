@@ -56,12 +56,14 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#dfdfdf',
         borderRadius: 10,
-        marginBottom: 14,
         padding: 10,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginLeft: 10,
+        marginStart: 10,
+        marginEnd: 10,
+        marginTop: 14,
+
     },
     titulo: {
         fontWeight: 'bold',
